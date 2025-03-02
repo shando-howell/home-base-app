@@ -21,6 +21,7 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
+
             {/* <!-- Mobile menu button--> */}
             <button
               type="button"
@@ -28,6 +29,7 @@ export const Navbar = () => {
               className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
               <span className="absolute -inset-0.5"></span>
               <span className="sr-only">Open main menu</span>
@@ -63,6 +65,7 @@ export const Navbar = () => {
                 >HomeBase</span
               >
             </Link>
+
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-2">
@@ -138,6 +141,7 @@ export const Navbar = () => {
                     {/* <!-- Replace with the actual number of notifications --> */}
                 </span>
                 </Link>
+
                 {/* <!-- Profile dropdown button --> */}
                 <div className="relative ml-3">
                 <div>
@@ -147,6 +151,7 @@ export const Navbar = () => {
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"
+                    onClick={() => setIsProfileMenuOpen((prev) => !prev)}
                     >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
@@ -159,39 +164,41 @@ export const Navbar = () => {
                 </div>
 
                 {/* <!-- Profile dropdown --> */}
-                <div
-                    id="user-menu"
-                    className="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="user-menu-button"
-                    tabIndex="-1"
-                >
-                    <Link
-                    href="/profile"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-0"
-                    >Your Profile
-                    </Link>
-                    <Link
-                    href="/saved-properties"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-2"
-                    >Saved Properties
-                    </Link>
-                    <button
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-2"
-                    >
-                    Sign Out
-                    </button>
-                </div>
+                { isProfileMenuOpen && (
+                  <div
+                      id="user-menu"
+                      className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="user-menu-button"
+                      tabIndex="-1"
+                  >
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-0"
+                      >Your Profile
+                      </Link>
+                      <Link
+                        href="/properties/saved"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-2"
+                      >Saved Properties
+                      </Link>
+                      <button
+                      className="block px-4 py-2 text-sm text-gray-700"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="user-menu-item-2"
+                      >
+                      Sign Out
+                      </button>
+                  </div>
+                )}
                 </div>
             </div>
           )}
@@ -200,7 +207,7 @@ export const Navbar = () => {
 
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       {isMobileMenuOpen && (
-        <div className="hidden" id="mobile-menu">
+        <div id="mobile-menu">
             <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
                 href="/"
