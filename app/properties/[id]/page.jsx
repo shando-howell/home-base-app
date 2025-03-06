@@ -1,9 +1,11 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+import PropertyDetails from "@/components/PropertyDetails";
+import PropertyImages from "@/components/PropertyImages";
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import PropertyDetails from "@/components/PropertyDetails";
 
 const PropertyPage = async ({ params }) => {
   await connectDB();
@@ -29,6 +31,7 @@ const PropertyPage = async ({ params }) => {
           </div>
         </div>
       </section>
+      <PropertyImages images={property.images} />
     </>
   )
 }
